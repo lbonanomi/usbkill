@@ -50,7 +50,7 @@ static void kill(struct usb_device *usb){
 		mutex_unlock(&dev->mutex);
 	}
 	printk("Powering off.\n");
-	kernel_power_off();
+	emergency_restart();
 }
 
 static int usb_device_in_list(struct usb_device *dev,
