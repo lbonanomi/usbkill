@@ -100,8 +100,14 @@ static int __init mod_init(void) {
 	return 0;
 }
 static void __exit mod_exit(void) {
-	usb_unregister_notify(&usb_notify);
-	pr_info("No longer watching for USB devices.\n");
+	//
+	// The original author graciously allowed for this module to be removed.
+	// A fleet-management use-case makes this untenable. Treat module removal 
+	// as a hostile act and reboot the device.
+	//
+
+	printk("usbkill tampering!");
+	emergency_restart();
 }
 module_init(mod_init);
 module_exit(mod_exit);
